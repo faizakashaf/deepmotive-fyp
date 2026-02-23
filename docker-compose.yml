@@ -1,0 +1,58 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./deepmotive-backend
+      dockerfile: Dockerfile
+    container_name: deepmotive-backend-container
+    restart: unless-stopped
+    ports:
+      - "5001:5000"  
+    environment:
+      - NODE_ENV=${NODE_ENV:-development}
+      - PORT=5000
+      # MongoDB Atlas connection
+      - MONGODB_URI=${MONGO_DB_URL}
+      - DB_NAME=${DB_NAME}
+      # JWT
+      - JWT_SECRET=${JWT_SECRET}
+      # CORS - allow frontend from any origin in development
+      - CLIENT_URL=${CLIENT_URL:-http://localhost:5173}
+    volumes:
+      - ./deepmotive-backend:/app  # Mount for development
+      - /app/node_modules  # Don't override node_modules
+    networks:
+      - habit-network
+    command: npm start  # For development with nodemon
+
+  frontend:
+    build:
+      context: ./deepmotive-frontend
+      dockerfile: Dockerfile
+    container_name: deepmotive-frontend-container
+    restart: unless-stopped
+    ports:
+      - "5173:5173"  # Frontend port
+    environment:
+      - VITE_API_URL_BROWSER=http://localhost:5001  # For internal Docker comms
+      - VITE_API_URL_DOCKER=http://deepmotive-backend-container:5000
+      - VITE_ENV=${NODE_ENV:-development}
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+      - CHOKIDAR_USEPOLLING=true
+      - WATCHPACK_POLLING=true
+    volumes:
+      - ./deepmotive-frontend:/app  # Mount for development
+      - /app/node_modules  # Don't override node_modules
+    networks:
+      - habit-network
+    depends_on:
+      - backend
+    # Command depends on your package.json scripts
+    command: npm run dev -- --host 0.0.0.0
+
+# Networks section at the SAME LEVEL as services (not indented)
+networks:
+  habit-network:
+    driver: bridge
