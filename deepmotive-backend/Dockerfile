@@ -8,7 +8,7 @@ COPY package*.json ./
 # COPY yarn.lock* ./
 
 # Install all dependencies (including dev for now, you can optimize later)
-RUN npm ci
+RUN npm install
 
 # Copy application code
 COPY . .
