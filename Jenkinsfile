@@ -44,16 +44,16 @@ pipeline {
             }
         }
         
-    //     stage('Build Frontend Image') {
-    //         steps {
-    //             script {
-    //                 echo '📦 Building Frontend Docker Image...'
-    //                 dir('deepmotive-frontend') {
-    //                     docker.build("habit-frontend:${BUILD_TAG}")
-    //                 }
-    //             }
-    //         }
-    //     }
+        stage('Build Frontend Image') {
+            steps {
+                script {
+                    echo '📦 Building Frontend Docker Image...'
+                    dir('deepmotive-frontend') {
+                        docker.build("habit-frontend:${BUILD_TAG}")
+                    }
+                }
+            }
+        }
         
     //     stage('Tag Images for ECR') {
     //         steps {
