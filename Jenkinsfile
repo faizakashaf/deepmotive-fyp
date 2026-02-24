@@ -55,19 +55,19 @@ pipeline {
             }
         }
         
-    //     stage('Tag Images for ECR') {
-    //         steps {
-    //             script {
-    //                 echo '🏷️ Tagging images for ECR...'
-    //                 sh """
-    //                     docker tag habit-backend:${BUILD_TAG} ${ECR_BACKEND}:${BUILD_TAG}
-    //                     docker tag habit-backend:${BUILD_TAG} ${ECR_BACKEND}:latest
-    //                     docker tag habit-frontend:${BUILD_TAG} ${ECR_FRONTEND}:${BUILD_TAG}
-    //                     docker tag habit-frontend:${BUILD_TAG} ${ECR_FRONTEND}:latest
-    //                 """
-    //             }
-    //         }
-    //     }
+        stage('Tag Images for ECR') {
+            steps {
+                script {
+                    echo '🏷️ Tagging images for ECR...'
+                    sh """
+                        docker tag habit-backend:${BUILD_TAG} ${ECR_BACKEND}:${BUILD_TAG}
+                        docker tag habit-backend:${BUILD_TAG} ${ECR_BACKEND}:latest
+                        docker tag habit-frontend:${BUILD_TAG} ${ECR_FRONTEND}:${BUILD_TAG}
+                        docker tag habit-frontend:${BUILD_TAG} ${ECR_FRONTEND}:latest
+                    """
+                }
+            }
+        }
         
     //     stage('Push to ECR') {
     //         steps {
