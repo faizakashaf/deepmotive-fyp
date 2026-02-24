@@ -69,19 +69,19 @@ pipeline {
             }
         }
         
-    //     stage('Push to ECR') {
-    //         steps {
-    //             script {
-    //                 echo '☁️ Pushing images to Amazon ECR...'
-    //                 sh """
-    //                     docker push ${ECR_BACKEND}:${BUILD_TAG}
-    //                     docker push ${ECR_BACKEND}:latest
-    //                     docker push ${ECR_FRONTEND}:${BUILD_TAG}
-    //                     docker push ${ECR_FRONTEND}:latest
-    //                 """
-    //             }
-    //         }
-    //     }
+        stage('Push to ECR') {
+            steps {
+                script {
+                    echo '☁️ Pushing images to Amazon ECR...'
+                    sh """
+                        docker push ${ECR_BACKEND}:${BUILD_TAG}
+                        docker push ${ECR_BACKEND}:latest
+                        docker push ${ECR_FRONTEND}:${BUILD_TAG}
+                        docker push ${ECR_FRONTEND}:latest
+                    """
+                }
+            }
+        }
         
     //     stage('Deploy to ECS') {
     //         steps {
