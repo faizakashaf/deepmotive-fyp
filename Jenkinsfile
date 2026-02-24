@@ -83,7 +83,7 @@ pipeline {
             }
         }
         
-    //     stage('Deploy to ECS') {
+        stage('Deploy to ECS') {
             steps {
                 script {
                     echo '🚀 Deploying to ECS Fargate...'
@@ -133,3 +133,4 @@ pipeline {
     //         // Optional: Send alert
     //     }
     }
+}
