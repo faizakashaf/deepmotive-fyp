@@ -33,16 +33,16 @@ pipeline {
             }
         }
         
-    //     stage('Build Backend Image') {
-    //         steps {
-    //             script {
-    //                 echo '📦 Building Backend Docker Image...'
-    //                 dir('deepmotive-backend') {
-    //                     docker.build("habit-backend:${BUILD_TAG}")
-    //                 }
-    //             }
-    //         }
-    //     }
+        stage('Build Backend Image') {
+            steps {
+                script {
+                    echo '📦 Building Backend Docker Image...'
+                    dir('deepmotive-backend') {
+                        docker.build("habit-backend:${BUILD_TAG}")
+                    }
+                }
+            }
+        }
         
     //     stage('Build Frontend Image') {
     //         steps {
