@@ -83,28 +83,28 @@ pipeline {
             }
         }
         
-        stage('Deploy to ECS') {
-            steps {
-                script {
-                    echo '🚀 Deploying to ECS Fargate...'
-                    sh """
-                        # Force new deployment for backend
-                        aws ecs update-service \
-                            --cluster habit-cluster \
-                            --service backend-service \
-                            --force-new-deployment \
-                            --region ${AWS_REGION}
+        // stage('Deploy to ECS') {
+        //     steps {
+        //         script {
+        //             echo '🚀 Deploying to ECS Fargate...'
+        //             sh """
+        //                 # Force new deployment for backend
+        //                 aws ecs update-service \
+        //                     --cluster habit-cluster \
+        //                     --service backend-service \
+        //                     --force-new-deployment \
+        //                     --region ${AWS_REGION}
                         
-                        # Force new deployment for frontend
-                        aws ecs update-service \
-                            --cluster habit-cluster \
-                            --service frontend-service \
-                            --force-new-deployment \
-                            --region ${AWS_REGION}
-                    """
-                }
-            }
-        }
+        //                 # Force new deployment for frontend
+        //                 aws ecs update-service \
+        //                     --cluster habit-cluster \
+        //                     --service frontend-service \
+        //                     --force-new-deployment \
+        //                     --region ${AWS_REGION}
+        //             """
+        //         }
+        //     }
+        // }
         
     //     stage('Verify Deployment') {
     //         steps {
