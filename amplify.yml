@@ -8,9 +8,8 @@ applications:
             - npm install
         build:
           commands:
-            
             - "echo 'VITE_API_URL=http://habit-public-alb-2050879591.eu-central-1.elb.amazonaws.com' > .env"
-            - "cat .env || echo 'No .env file'"
+            - "cat .env | grep VITE"
             - npm run build
       artifacts:
         baseDirectory: dist            
