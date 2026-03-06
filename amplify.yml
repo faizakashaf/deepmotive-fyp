@@ -1,4 +1,3 @@
-# amplify.yml (repo root mein rakho)
 version: 1
 applications:
   - appRoot: deepmotive-frontend       
@@ -7,12 +6,11 @@ applications:
         preBuild:
           commands:
             - npm install
-            - ls -la
-            - cat .env || echo "No .env file found"
         build:
           commands:
-            - echo "VITE_API_URL from env: $VITE_API_URL"
-            - cat .env || echo "Still no .env"
+            
+            - "echo 'VITE_API_URL=http://habit-public-alb-2050879591.eu-central-1.elb.amazonaws.com' > .env"
+            - "cat .env || echo 'No .env file'"
             - npm run build
       artifacts:
         baseDirectory: dist            
