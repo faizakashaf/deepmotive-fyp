@@ -7,8 +7,12 @@ applications:
         preBuild:
           commands:
             - npm install
+            - ls -la
+            - cat .env || echo "No .env file found"
         build:
           commands:
+            - echo "VITE_API_URL from env: $VITE_API_URL"
+            - cat .env || echo "Still no .env"
             - npm run build
       artifacts:
         baseDirectory: dist            
