@@ -1,18 +1,20 @@
 version: 1
 applications:
-  - appRoot: deepmotive-frontend       
+  - appRoot: deepmotive-frontend
     frontend:
       phases:
         preBuild:
           commands:
-            - npm install
+            - npm ci
         build:
           commands:
-            - "echo 'VITE_API_URL=http://habit-public-alb-2050879591.eu-central-1.elb.amazonaws.com' > .env"
-            - "cat .env | grep VITE"
+            # 🔥 CRITICAL: Force-create the .env file with your ALB DNS
+            - echo "VITE_API_URL=http://habit-public-alb-2050879591.eu-central-1.elb.amazonaws.com" > .env
+            # ✅ Verify the file was created correctly (this will show in build logs)
+            - cat .env
             - npm run build
       artifacts:
-        baseDirectory: dist            
+        baseDirectory: dist
         files:
           - '**/*'
       cache:
