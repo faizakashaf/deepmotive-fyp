@@ -8,9 +8,7 @@ applications:
             - npm ci
         build:
           commands:
-            # 🔥 CRITICAL: Force-create the .env file with your ALB DNS
-            - echo "VITE_API_URL=http://habit-public-alb-2050879591.eu-central-1.elb.amazonaws.com" > .env
-            # ✅ Verify the file was created correctly (this will show in build logs)
+            - echo "VITE_API_URL=http://habit-alb-381115181.eu-central-1.elb.amazonaws.com" > .env
             - cat .env
             - npm run build
       artifacts:
