@@ -1,20 +1,17 @@
 version: 1
-applications:
-  - appRoot: deepmotive-frontend
-    frontend:
-      phases:
-        preBuild:
-          commands:
-            - npm ci
-        build:
-          commands:
-            - echo "VITE_API_URL=http://habit-alb-381115181.eu-central-1.elb.amazonaws.com" > .env
-            - cat .env
-            - npm run build
-      artifacts:
-        baseDirectory: dist
-        files:
-          - '**/*'
-      cache:
-        paths:
-          - node_modules/**/*
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm ci
+    build:
+      commands:
+        - echo "VITE_API_URL=http://habit-alb-381115181.eu-central-1.elb.amazonaws.com" > .env
+        - npm run build
+  artifacts:
+    baseDirectory: dist
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - node_modules/**/*
