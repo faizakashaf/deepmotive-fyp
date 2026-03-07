@@ -1,24 +1,12 @@
-//src/api/axios.js
 import axios from "axios";
 
-// Detect if running in browser or Node.js
-const isBrowser = typeof window !== 'undefined';
+// ✅ Environment variable ko directly use karo
+const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5001";
 
-// Choose the right URL based on environment
-let API_BASE_URL;
-
-if (isBrowser) {
-  // Browser mein: localhost use karo
-  API_BASE_URL = import.meta.env.VITE_API_URL_BROWSER || "http://localhost:5001";
-  console.log('🌐 Running in browser, using:', API_BASE_URL);
-} else {
-  // Docker container mein: container name use karo
-  API_BASE_URL = import.meta.env.VITE_API_URL_DOCKER || "http://deepmotive-backend-container:5000";
-  console.log('🐳 Running in Docker, using:', API_BASE_URL);
-}
+console.log('🌐 Using API URL:', API_BASE_URL);
 
 const api = axios.create({
-  baseURL: `/api`,
+  baseURL: `${API_BASE_URL}/api`,  // ✅ AB SAHI HOGA!
   headers: {
     "Content-Type": "application/json",
   },
