@@ -3,7 +3,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Ship, Mail, Lock, User, UserPlus } from "lucide-react";
-import axios from "axios";
+// import axios from "axios";
+import api from "../axios";
 import PageTransition from "../components/PageTransition";
 
 const Signup = ({ setIsAuthenticated }) => {
@@ -44,11 +45,11 @@ const Signup = ({ setIsAuthenticated }) => {
     }
 
     try {
-      const response = await axios.post("/api/auth/signup", {
-        name: formData.name,
-        email: formData.email,
-        password: formData.password,
-      });
+      const response = await api.post("/auth/signup", {
+  name: formData.name,
+  email: formData.email,
+  password: formData.password,
+});
 
       localStorage.setItem("token", response.data.token);
       localStorage.setItem("user", JSON.stringify(response.data.user));

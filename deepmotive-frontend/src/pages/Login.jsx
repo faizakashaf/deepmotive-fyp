@@ -3,7 +3,8 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Ship, Mail, Lock, LogIn } from "lucide-react";
-import axios from "axios";
+// import axios from "axios";
+import api from "../axios";
 import PageTransition from "../components/PageTransition";
 
 const Login = ({ setIsAuthenticated }) => {
@@ -21,7 +22,7 @@ const Login = ({ setIsAuthenticated }) => {
     setLoading(true);
 
     try {
-      const response = await axios.post("/api/auth/login", {
+      const response = await api.post("/auth/login", {
         email,
         password,
       });
