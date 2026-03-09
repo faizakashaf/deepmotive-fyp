@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Ship, Mail, Lock, LogIn } from "lucide-react";
 // import axios from "axios";
-import api from "../axios";
+import api from "../api/axios";
 import PageTransition from "../components/PageTransition";
 
 const Login = ({ setIsAuthenticated }) => {
