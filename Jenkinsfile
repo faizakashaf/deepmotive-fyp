@@ -7,7 +7,6 @@ pipeline {
         AWS_ACCOUNT_ID = '864624564756'   
         AWS_REGION = 'eu-central-1'              
         ECR_BACKEND = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/habit-backend"
-        // ECR_FRONTEND = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/habit-frontend"
         
         // Build Info
         BUILD_TAG = "build-${BUILD_NUMBER}"
@@ -43,7 +42,6 @@ pipeline {
                 }
             }
         }
-        
         
         stage('Tag Images for ECR') {
             steps {
@@ -82,19 +80,16 @@ pipeline {
                             --region ${AWS_REGION}
                     """
                 }
-            // }
+            }
         }
-        
-
+    }  
     
-    // post {
-    //     success {
-    //         echo '🎉 Deployment successful!'
-    //         // Optional: Send email/Slack notification
-    //     }
-    //     failure {
-    //         echo '❌ Deployment failed! Check logs.'
-    //         // Optional: Send alert
-    //     }
+    post {
+        success {
+            echo '🎉 Deployment successful!'
+        }
+        failure {
+            echo '❌ Deployment failed! Check logs.'
+        }
     }
-}
+}  
