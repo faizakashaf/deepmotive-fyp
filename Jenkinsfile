@@ -82,25 +82,10 @@ pipeline {
                             --region ${AWS_REGION}
                     """
                 }
-            }
+            // }
         }
         
-    //     stage('Verify Deployment') {
-    //         steps {
-    //             script {
-    //                 echo '✅ Verifying deployment status...'
-    //                 sh """
-    //                     sleep 30
-    //                     aws ecs describe-services \
-    //                         --cluster habit-cluster \
-    //                         --services backend-service frontend-service \
-    //                         --region ${AWS_REGION} \
-    //                         --query 'services[].{service:serviceName,status:status,runningCount:runningCount}'
-    //                 """
-    //             }
-    //         }
-    //     }
-    // }
+
     
     // post {
     //     success {
